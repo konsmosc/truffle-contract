@@ -8,30 +8,36 @@ before_install:
 
 jobs:
   include:
-    - stage: local-tests
+    - stage: Repository Tests
       script:
         - >
           if [ "$TRAVIS_PULL_REQUEST" != "false" ];
           then
-            tc use $( basename ${TRAVIS_REPO_SLUG} ):${TRAVIS_PULL_REQUEST_BRANCH};
+          docker run -it --rm --name local-tests \
+            truffle/ci:latest run_local_tests \
+              $( basename ${TRAVIS_REPO_SLUG} ) \
+              ${TRAVIS_BRANCH} \
+              ${TRAVIS_PULL_REQUEST_BRANCH};
           fi
-        - >
-          tc test $( basename ${TRAVIS_REPO_SLUG} ) ~~ $( basename ${TRAVIS_REPO_SLUG} )
-    - stage: upstream-tests
+    - stage: Upstream Tests
       script:
         - >
           if [ "$TRAVIS_PULL_REQUEST" != "false" ];
           then
-            tc use truffle-core:$TRAVIS_BRANCH $( basename ${TRAVIS_REPO_SLUG} ):${TRAVIS_PULL_REQUEST_BRANCH};
+          docker run -it --rm --name upstream-tests \
+            truffle/ci:latest run_upstream_tests \
+              $( basename ${TRAVIS_REPO_SLUG} ) \
+              ${TRAVIS_BRANCH} \
+              ${TRAVIS_PULL_REQUEST_BRANCH};
           fi
-        - >
-          tc test truffle-core ~~ $( basename ${TRAVIS_REPO_SLUG} )
-    - stage: scenario-tests
+    - stage: Scenario Tests
       script:
         - >
           if [ "$TRAVIS_PULL_REQUEST" != "false" ];
           then
-            tc use truffle:$TRAVIS_BRANCH $( basename ${TRAVIS_REPO_SLUG} ):${TRAVIS_PULL_REQUEST_BRANCH};
+          docker run -it --rm --name scenario-tests \
+            truffle/ci:latest run_scenario_tests \
+              $( basename ${TRAVIS_REPO_SLUG} ) \
+              ${TRAVIS_BRANCH} \
+              ${TRAVIS_PULL_REQUEST_BRANCH};
           fi
-        - >
-          tc test truffle
