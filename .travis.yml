@@ -9,6 +9,7 @@ before_install:
 jobs:
   include:
     - stage: local-tests
+      script:
         - >
           if [ "$TRAVIS_PULL_REQUEST" != "false" ];
           then
