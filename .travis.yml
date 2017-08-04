@@ -13,8 +13,8 @@ jobs:
         - >
           if [ "$TRAVIS_PULL_REQUEST" != "false" ];
           then
-          docker run -it --rm --name local-tests \
-            truffle/ci:latest run_local_tests \
+          docker run -it --rm --name repo-tests \
+            truffle/ci:latest run_repo_tests \
               $( basename ${TRAVIS_REPO_SLUG} ) \
               ${TRAVIS_BRANCH} \
               ${TRAVIS_PULL_REQUEST_BRANCH};
