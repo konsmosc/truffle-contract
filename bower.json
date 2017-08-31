@@ -15,9 +15,9 @@
   ],
   "homepage": "https://github.com/trufflesuite/truffle-contract",
   "dependencies": {
-    "ethjs-abi-konsmosc": "0.1.9",
-    "truffle-blockchain-utils": "^0.0.3",
-    "truffle-contract-schema": "^0.0.5",
+    "ethjs-abi-konsmosc": "*",
+    "truffle-blockchain-utils": "*",
+    "truffle-contract-schema": "*",
     "web3": "^0.20.1"
   },
   "ignore": [
