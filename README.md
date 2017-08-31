@@ -6,7 +6,7 @@ Better Ethereum contract abstraction, for Node and the browser.
 
 ```
 $ npm install truffle-contract
-or
+               or
 $ bower install truffle-contract-konsmosc
 ```
 
