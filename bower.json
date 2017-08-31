@@ -18,7 +18,7 @@
     "ethjs-abi-konsmosc": "*",
     "truffle-blockchain-utils": "*",
     "truffle-contract-schema": "*",
-    "web3": "*"
+    "web3": "0.19.0"
   },
   "ignore": [
     "**/.*",
